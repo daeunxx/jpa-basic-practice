@@ -28,4 +28,9 @@ public class Member {
   private String street;
 
   private String zipcode;
+
+  public void changeTeam(Team team) {
+    this.team = team;
+    team.getMembers().add(this);
+  }
 }
