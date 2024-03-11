@@ -2,9 +2,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
-import java.util.List;
-import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.Team;
+import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
 
 public class JpaMain {
 
@@ -16,24 +15,8 @@ public class JpaMain {
     tx.begin();
 
     try {
-      Team team = new Team();
-      team.setName("TeamA");
-      em.persist(team);
-
-      Member member = new Member();
-      member.setUsername("daeun");
-      member.changeTeam(team);
-      em.persist(member);
-
-//      em.flush();
-//      em.clear();
-
-      Team findTeam = em.find(Team.class, team.getId());
-      List<Member> members = findTeam.getMembers();
-
-      System.out.println("==================");
-      members.forEach(m -> System.out.println(m.getUsername()));
-      System.out.println("==================");
+      Order order = new Order();
+      order.addOrderItem(new OrderItem());
 
       tx.commit();
     } catch (Exception e) {
