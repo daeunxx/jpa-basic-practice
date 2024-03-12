@@ -4,18 +4,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.OneToOne;
 
 @Entity
-@Getter @Setter
-public class Member {
+public class Delivery {
 
   @Id @GeneratedValue
-  @Column(name = "member_id")
+  @Column(name = "delivery_id")
   private Long id;
-
-  private String username;
 
   private String city;
 
@@ -23,6 +19,8 @@ public class Member {
 
   private String zipcode;
 
-//  @OneToMany(mappedBy = "member")
-//  private List<Order> orders = new ArrayList<>();
+  private DeliveryStatus status;
+
+  @OneToOne(mappedBy = "delivery")
+  private Order order;
 }
