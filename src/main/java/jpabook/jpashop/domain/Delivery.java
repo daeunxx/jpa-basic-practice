@@ -3,6 +3,7 @@ package jpabook.jpashop.domain;
 import static jakarta.persistence.FetchType.LAZY;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -15,12 +16,8 @@ public class Delivery extends BaseEntity {
   @Column(name = "delivery_id")
   private Long id;
 
-  private String city;
-
-  private String street;
-
-  private String zipcode;
-
+  @Embedded
+  private Address address;
   private DeliveryStatus status;
 
   @OneToOne(mappedBy = "delivery", fetch = LAZY)
