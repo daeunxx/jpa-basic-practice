@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.FetchType.LAZY;
 
 import jakarta.persistence.Column;
@@ -37,10 +38,10 @@ public class Order extends BaseEntity {
   @JoinColumn(name = "member_id")
   private Member member;
 
-  @OneToMany(mappedBy = "order", fetch = LAZY)
+  @OneToMany(mappedBy = "order", fetch = LAZY, cascade = ALL)
   private List<OrderItem> orderItems = new ArrayList<>();
 
-  @OneToOne(fetch = LAZY)
+  @OneToOne(fetch = LAZY, cascade = ALL)
   @JoinColumn(name = "delivery_id")
   private Delivery delivery;
 
