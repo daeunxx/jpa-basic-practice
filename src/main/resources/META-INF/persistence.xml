@@ -13,6 +13,7 @@
     <class>jpabook.jpashop.domain.Album</class>
     <class>jpabook.jpashop.domain.Book</class>
     <class>jpabook.jpashop.domain.Movie</class>
+    <class>jpabook.jpashop.domain.AddressEntity</class>
     <properties>
       <!-- 필수 속성 -->
       <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>

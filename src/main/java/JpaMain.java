@@ -3,8 +3,8 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jpabook.jpashop.domain.Address;
+import jpabook.jpashop.domain.AddressEntity;
 import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.Period;
 
 public class JpaMain {
 
@@ -18,19 +18,22 @@ public class JpaMain {
     try {
       Address address = new Address("city", "street", "1");
 
-      Member member1 = new Member();
-      member1.setUsername("member1");
-      member1.setWorkAddress(address);
-      member1.setPeriod(new Period());
-      em.persist(member1);
+      Member member = new Member();
+      member.setUsername("member1");
+      member.setWorkAddress(address);
 
-      Member member2 = new Member();
-      member2.setUsername("member1");
-      member2.setWorkAddress(address);
-      member2.setPeriod(new Period());
-      em.persist(member2);
+      member.getFavoriteFoods().add("치킨");
+      member.getFavoriteFoods().add("피자");
 
-//      member1.getWorkAddress().setCity("newCity");
+      member.getAddressEntityList().add(new AddressEntity(address));
+
+      em.persist(member);
+
+      em.flush();
+      em.clear();
+
+      System.out.println("=====================");
+      Member findMember = em.find(Member.class, member.getId());
 
       tx.commit();
     } catch (Exception e) {

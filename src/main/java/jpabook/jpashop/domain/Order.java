@@ -21,11 +21,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @Table(name = "orders")
 public class Order extends BaseEntity {
 
-  @Id @GeneratedValue
+  @Id
+  @GeneratedValue
   @Column(name = "order_id")
   private Long id;
 
