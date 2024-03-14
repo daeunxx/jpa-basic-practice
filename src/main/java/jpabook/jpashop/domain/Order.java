@@ -1,5 +1,7 @@
 package jpabook.jpashop.domain;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -35,10 +37,10 @@ public class Order extends BaseEntity {
   @JoinColumn(name = "member_id")
   private Member member;
 
-  @OneToMany(mappedBy = "order")
+  @OneToMany(mappedBy = "order", fetch = LAZY)
   private List<OrderItem> orderItems = new ArrayList<>();
 
-  @OneToOne
+  @OneToOne(fetch = LAZY)
   @JoinColumn(name = "delivery_id")
   private Delivery delivery;
 
